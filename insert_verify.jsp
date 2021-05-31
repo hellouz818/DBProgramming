@@ -10,6 +10,12 @@
 	int split_no = Integer.parseInt(request.getParameter("split_no"));
 %>
 <%		
+	Connection myConn = null;
+	String	result = null;	
+	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user="db1914062";
+	String passwd="oracle";
+=======
 	Connection myConn = null;    String	result = null;	
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user="db1916205";   String passwd="oracle";

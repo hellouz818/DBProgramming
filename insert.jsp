@@ -1,10 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*"  %>
+<html>
+<head>
+<title>수강신청 입력</title>
+<link rel='stylesheet' href='./design.css' />
+</head>
+=======
 <html><head><title>수강신청 입력</title></head>
 <body>
 <%@ include file="top.jsp" %>
 <%   if (session_id==null) response.sendRedirect("login.jsp");  %>
 
+<table class="enroll_tb" width="75%" align="center" border>
+<br>
+<tr><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th>
+      <th class="enroll_th">수강신청</th></tr>
+<%
+	Connection myConn = null;
+	Statement stmt = null;	
+	ResultSet myResultSet = null;   String mySQL = "";
+	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user="db1914062";
+	String passwd="oracle";
+    String dbdriver = "oracle.jdbc.driver.OracleDriver";    
 <table width="75%" align="center" border>
 <br>
 <tr><th>과목번호</th><th>분반</th><th>과목명</th><th>학점</th>
@@ -35,6 +53,10 @@ if (myResultSet != null) {
 		int grade = myResultSet.getInt("grade");	 //학점
 %>
 <tr>
+  <td class="enroll_td" align="center"><%= c_no %></td> <td class="enroll_td" align="center"><%= split_no %></td> 
+  <td class="enroll_td" align="center"><%= c_name %></td><td class="enroll_td" align="center"><%= grade %></td>
+  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%= c_no %>&split_no=<%= split_no %>">신청</a></td>
+=======
   <td align="center"><%= c_no %></td> <td align="center"><%= split_no %></td> 
   <td align="center"><%= c_name %></td><td align="center"><%= grade %></td>
   <td align="center"><a href="insert_verify.jsp?c_no=<%= c_no %>&split_no=<%= split_no %>">신청</a></td>
