@@ -70,32 +70,6 @@ try{
 <h4 align="center"><%=year %>년도 <%=semester %>학기 수강신청 조회</h4>
 
 
-<form id="FRM" method="POST" action="select.jsp" width="75%" align="center">
-<select name="year" size="1">
-<option value="<%=year%>"><%=year%>년</option>
-<option value="<%=year-1%>" ><%=year-1%>년</option>
-<option value="<%=year-2%>" ><%=year-2%>년</option>
-</select>
-
-<select name="semester" size="1">
-<%
-if(semester==1){
-	%>
-	<option value="1" >1학기</option>
-	<option value="2" >2학기</option>
-	<%
-}else{
-	%>
-	<option value="2">2학기</option>
-	<option value="1">1학기</option>
-	<%
-}//수강신청 날짜 선택함
-%>
-</select>
-
-<input type="submit" value="조회" onclick="local()"/>
-</form>
-
 
 <table width="75%" align="center" border>
 <tr><th>교시</th><th>과목번호</th><th>과목명</th><th>분반</th><th>학점</th><th>장소</th><th>강의 삭제</th></tr>
