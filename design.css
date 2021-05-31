@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GyeonggiTitleM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiTitleM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#top_nav{
+	width:100%;
+	font-family : 'paybooc-Bold';
+	font-size: 1.2em;
+	height: 30pt;
+	background: #22405f;
+	padding: 1%;
+	border : none;
+	color : white;
+	border-radius : 30px;
+	
+}
+.top_td{
+	border : none;
+}
+a{
+	text-decoration : none;
+}
+.top_a{
+	color: white;	
+}
+.top_a:hover{
+	color:white;
+	background : #415a7e;
+	border-radius : 30px;
+	padding: 5px;
+}
+.top_a:active{
+	color:white;
+	background : #8697A6;
+	border-radius : 30px;
+	padding: 5px;
+}
+
+#main_table{
+	font-family : 'GyeonggiTitleM';
+}
+
+#login_th{
+	font-family :  'GyeonggiTitleM';
+	background : #22405f;
+	color : white;
+	border : none;
+	font-size : 20px;
+	padding : 5px;
+	border-radius : 30px;
+}
+#login_tb{
+	border : none;
+	font-family :  'GyeonggiTitleM';
+}
+.login_td{
+	border :none;
+	align : center;
+	font-family :  'GyeonggiTitleM';
+}
+#btn{
+	font-family :  'GyeonggiTitleM';
+	border-radius:5px;
+	font-size : 18px;
+	padding : 5px;
+	border : none;
+	background : #EDEBE0;
+}
+
+form{
+	font-family :  'GyeonggiTitleM';
+}
+
+.enroll_th{
+	font-family: 'GyeonggiTitleM';
+	background : #51608C;
+	border : none;
+	color : white;
+	padding : 8px;
+	font-size : 18px;
+	border-bottom: 1px solid;
+    border-collapse: collapse;
+}
+.enroll_td{
+	font-family: 'GyeonggiTitleM';
+	border : none;
+	padding : 8px;
+	font-size : 18px;
+	border-bottom: 1px solid;
+    border-collapse: collapse;
+}
+.enroll_tb {
+	width:100%;
+    border-top: 1px solid;
+    border-collapse: collapse;
+}
+#subscribe{
+	color:black;
+}
+#subscribe:hover{
+	color:black;
+	background : #D9D7AC;
+	padding : 8px;
+	border-radius : 15px;
+}
+#subscribe:active{
+	padding : 8px;
+	border-radius : 15px;
+	background:#8F8164;
+}
+
+#select_title{
+	font-family: 'GyeonggiTitleM';
+	font-size : 20px;
+}
+
+#delete_title{
+	font-family: 'GyeonggiTitleM';
+	font-size : 20px;
+}
+
+#delete_btn{
+	color:black;
+}
+
+#delete_btn:hover{
+	color:black;
+	background : #F2CED8;
+	padding : 8px;
+	border-radius : 15px;
+}
+#delete_btn:active{
+	padding : 8px;
+	border-radius : 15px;
+	background:#8C6C75;
+}
+
+.semester_select{
+	font-family: 'GyeonggiTitleM';
+	align : center;
+	padding : 5px;
+}

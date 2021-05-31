@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title>수강신청 사용자 정보 수정</title>
+	<link rel='stylesheet' href='./design.css' />
 </head>
 <body>
 <%@ include file="top.jsp" %>
@@ -78,8 +79,8 @@
 			</tr>
 			<tr>
 			  <td colspan="4" align="center">
-			  <input id="update_btn" type="submit" value="수정 완료">
-			  <input id="update_btn" type="reset" value="초기화">
+			  <input id="btn" type="submit" value="수정 완료">
+			  <input id="btn" type="reset" value="초기화">
 			</tr>
 			</table>
 			</form>
