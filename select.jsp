@@ -79,6 +79,13 @@ try{
 	myResultSet=STMT.executeQuery(mySQL);//////
 	s_year =myResultSet.getInt("s_year");//////
 	
+	if(s_year>now_year){
+		%>
+		<script>
+		alert("입학년도가 현재보다 뒤입니다. 미래에서 오셨나요?");
+		</script>
+		<%
+	}
 	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
 }
 
