@@ -69,72 +69,43 @@ try{
 	semester=Integer.parseInt(M);
 	System.out.println("selected year:"+year+"   selected semester :"+semester);
 	
-	String sql="{?=call Date2EnrollYear(SYSDATE)}";
-	stmt=myConn.prepareCall(sql);
-	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
-	stmt.execute();
-	now_year=stmt.getInt(1);
-	
-	sql="{?=call Date2EnrollSemester(SYSDATE)}";
-	stmt=myConn.prepareCall(sql);
-	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
-	stmt.execute();
-	now_semester=stmt.getInt(1);
-	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   학기 :"+now_semester);
-	
-	stmt1=myConn.createStatement();
-	mySQL = "select s_year from student where s_id='" + session_id +"'";
-	rs=stmt1.executeQuery(mySQL);
-	while(rs.next()){
-		s_year =rs.getInt("s_year");
-	}
-	
-	
-	
-	if(s_year>now_year){
-		%>
-		<script>
-		alert("입학년도가 현재보다 뒤입니다. 미래에서 오셨나요?");
-		</script>
-		<%
-	}
-	
-	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
 }catch(Exception e){
-	String sql="{?=call Date2EnrollYear(SYSDATE)}";
-	stmt=myConn.prepareCall(sql);
-	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
-	stmt.execute();
-	now_year=stmt.getInt(1);
-	
-	sql="{?=call Date2EnrollSemester(SYSDATE)}";
-	stmt=myConn.prepareCall(sql);
-	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
-	stmt.execute();
-	now_semester=stmt.getInt(1);
-	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   학기 :"+now_semester);
-	
-	stmt1=myConn.createStatement();
-	mySQL = "select s_year from student where s_id='" + session_id +"'";
-	rs=stmt1.executeQuery(mySQL);
-	while(rs.next()){
-		s_year =rs.getInt("s_year");
-	}
-	
-	
-	
-	if(s_year>now_year){
-		%>
-		<script>
-		alert("입학년도가 현재보다 뒤입니다. 미래에서 오셨나요?");
-		</script>
-		<%
-	}
-	
-	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
-
-
+	year=0;
+	semester=0;
 }
+
+String sql="{?=call Date2EnrollYear(SYSDATE)}";
+stmt=myConn.prepareCall(sql);
+stmt.registerOutParameter(1,java.sql.Types.INTEGER);
+stmt.execute();
+now_year=stmt.getInt(1);
+
+sql="{?=call Date2EnrollSemester(SYSDATE)}";
+stmt=myConn.prepareCall(sql);
+stmt.registerOutParameter(1,java.sql.Types.INTEGER);
+stmt.execute();
+now_semester=stmt.getInt(1);
+
+System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   학기 :"+now_semester);
+
+stmt1=myConn.createStatement();
+mySQL = "select s_year from student where s_id='" + session_id +"'";
+rs=stmt1.executeQuery(mySQL);
+while(rs.next()){
+	s_year =rs.getInt("s_year");
+}
+
+
+
+if(s_year>now_year){
+	%>
+	<script>
+	alert("입학년도가 현재보다 뒤입니다. 미래에서 오셨나요?");
+	</script>
+	<%
+}
+
+System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
 
 
 if(year==0 && semester==0){
