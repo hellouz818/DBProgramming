@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
@@ -36,17 +37,24 @@ Statement STMT=null;
 ResultSet myResultSet = null;
 String mySQL = "";
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-String user="db1914062";
-String password="oracle";
+String user="db1912056";
+String password="ss2";
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
-int year;
-int semester;
+
+int year=0;//폼으로 받아오는 년도
+int semester=0;//폼으로 받아오는 학기
+int now_year=0;//sql 함수로 받는 year
+int now_semester=0;//sql 함수로 받는 semester
+int s_year=0;//입학년도!
+
 try{
 	Class.forName(dbdriver);
 	myConn=DriverManager.getConnection(dburl,user,password);
 }catch(SQLException ex){
 	System.err.println("SQLException: " + ex.getMessage());
 }
+
+
 try{
 	String Y=request.getParameter("year");
 	year=Integer.parseInt(Y);
@@ -58,24 +66,50 @@ try{
 	stmt=myConn.prepareCall(sql);
 	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
 	stmt.execute();
-	year=stmt.getInt(1);
+	now_year=stmt.getInt(1);
+	
 	sql="{?=call Date2EnrollSemester(SYSDATE)}";
 	stmt=myConn.prepareCall(sql);
 	stmt.registerOutParameter(1,java.sql.Types.INTEGER);
 	stmt.execute();
-	semester=stmt.getInt(1);
+	now_semester=stmt.getInt(1);
 	
-	System.out.println("현재날짜에 기반한 수강신청예정 년:"+year+"   월 :"+semester);
+	STMT=myConn.createStatement();////////
+	mySQL = "select s_year from student where s_id='" + session_id + "'";//////
+	myResultSet=STMT.executeQuery(mySQL);//////
+	s_year =myResultSet.getInt("s_year");//////
+	
+	System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
 }
+
+
+if(year==0 && semester==0){
+	year=now_year;//폼에서 입력값없을땐, 즉 기본값은 현재 년도
+	semester=now_semester;//다음 학기
+}
+
+if(now_year==0||now_semester==0||s_year==0||year==0||semester==0){
+	%>
+	<script>
+	alert("error : year&semester null");
+	</script>
+	<%
+}
+
 %>
 <h4 id="select_title" align="center"><%=year %>년도 <%=semester %>학기 수강신청 조회</h4>
 
 <form id="FRM" method="POST" action="select.jsp" width="75%" align="center">
 <select align="center" name="year" size="1">
-<option value="<%=year%>"><%=year%>년</option>
-<option value="<%=year-1%>" ><%=year-1%>년</option>
-<option value="<%=year-2%>" ><%=year-2%>년</option>
+<%
+for(int i=now_year;i>=s_year;i--){
+	%>
+	<option value="<%=i%>"><%=i%>년</option>
+	<%
+}
+%> 
 </select>
+
 <span align="right">
 <select align="center" name="semester" size="1">
 <%
@@ -99,7 +133,7 @@ if(semester==1){
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select c_time, c_no, c_name, split_no, grade, place from course where c_no in(select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
+mySQL="select c_time, c_no, c_name, split_no, grade, place from teach where c_no in(select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
 myResultSet=STMT.executeQuery(mySQL);
 if(myResultSet!=null){
 	while(myResultSet.next()){
@@ -129,5 +163,17 @@ try{
 %>
 
 </table>
+
+<%
+//총 몇과목 몇학점인지 뷰로 나타내기
+mySQL="CREATE RO REPLACE VIEW Finally_Sum as select c_no,grade from teach where c_no in (select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
+STMT.execute(mySQL);
+mySQL="select count(*) as sum_course, sum(grade) as sum_grade from Finally_Sum";
+myResultSet=STMT.executeQuery(mySQL);
+int sum_course=myResultSet.getInt("sum_course");
+int sum_grade=myResultSet.getInt("sum_grade");
+%>
+<h6>총 <%=sum_course %> 과목, <%=sum_grade %> 학점을 신청하였습니다.</h6>
+
 </body>
 </html>
