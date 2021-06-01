@@ -1,16 +1,16 @@
 CREATE OR REPLACE PROCEDURE SelectTimeTable
 ( sStudentId IN VARCHAR2, nYear IN NUMBER, nSemester IN NUMBER)
 IS
-v_time course.c_time%TYPE;
-v_no course.c_no%TYPE;
-v_name course.c_name%TYPE;
-v_split_no course.split_no%TYPE;
-v_grade course.grade%TYPE;
-v_place course.place%TYPE;
+v_time teach.t_time%TYPE;
+v_no teach.c_no%TYPE;
+v_name teach.c_name%TYPE;
+v_split_no teach.split_no%TYPE;
+v_grade teach.c_grade%TYPE;
+v_place teach.place%TYPE;
 result number;
 CURSOR timetable_infor IS
-SELECT  c_time, c_no, c_name, split_no, grade, place
-FROM course
+SELECT  t_time, c_no, c_name, split_no, c_grade, place
+FROM teach
 WHERE c_no in (SELECT enroll.c_no
 FROM enroll
 WHERE enroll.s_id=sStudentId 
