@@ -13,19 +13,18 @@
 	String dbdriver = "oracle.jdbc.driver.OracleDriver";
 	Class.forName(dbdriver);
 	Connection myConn = null;
-
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "db1914062";   //각자 오라클 계정
-	String passwd = "oracle";
+	String user = "db1912056";   //각자 오라클 계정
+	String passwd = "ss2";
 	
 	
-
 	Statement stmt = null;
 	String mySQL = null;
 	ResultSet result = null;
 	//String VuserName=request.getParameter("userName");
  	String VuserID = session_id;
 	String VuserPwd="";
+	int VuserYear=0;
 %>
 <%
 	if (session_id == null) {%> 
@@ -40,7 +39,7 @@
 			myConn = DriverManager.getConnection(dburl, user, passwd);
 			stmt = myConn.createStatement(); 
 			
-			mySQL = "select s_pwd, s_id from student where s_id='" + VuserID + "'";
+			mySQL = "select s_pwd, s_id, s_year from student where s_id='" + VuserID + "'";
 			result = stmt.executeQuery(mySQL);
 			
 		}catch(SQLException e){
@@ -51,6 +50,7 @@
 				if (result.next()) {
 					VuserPwd = result.getString("s_pwd");
 					VuserID=result.getString("s_id");
+					VuserYear=result.getInt("s_year");
 					//System.out.println(VuserID+"   "+VuserPwd);
 				}
 				else {
@@ -70,6 +70,11 @@
 			  <td id="update_td">아이디</td>
 			  <td colspan="3">
 			  <input id="update_id_in" type="text" name="VuserID" size="50" style="text-align: center;" value=<%=VuserID%> readonly></td>
+			</tr>
+			<tr>
+			  <td id="update_td">입학년도</td>
+			  <td colspan="3">
+			  <input id="update_id_in" type="text" name="VuserID" size="50" style="text-align: center;" value=<%=VuserYear%> readonly></td>
 			</tr>
 			<tr>  
 			  <td id="update_td">비밀번호</td>
