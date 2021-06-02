@@ -38,7 +38,7 @@ if (myResultSet != null) {
 <tr>
   <td class="enroll_td" align="center"><%= c_no %></td> <td class="enroll_td" align="center"><%= split_no %></td> 
   <td class="enroll_td" align="center"><%= c_name %></td><td class="enroll_td" align="center"><%= grade %></td>
-  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>&c_name=<%=c_name%>">신청</a></td>
+  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
 </tr>
 <%
 		}
