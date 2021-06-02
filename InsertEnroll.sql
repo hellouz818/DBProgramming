@@ -13,7 +13,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     nCourseUnit  NUMBER;
     nCnt  NUMBER;
     nTeachMax  NUMBER;
-    nCname VARCHAR2(60);
+    nCname VARCHAR2(30);
   BEGIN
     result := '';
 
@@ -25,15 +25,15 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     nSemester := Date2EnrollSemester(SYSDATE);
 
   /* 에러 처리 1 : 최대학점 초과여부 */
-    SELECT SUM(c.c_grade)
+    SELECT SUM(t.c_grade)
     INTO nSumCourseUnit
-    FROM   course c, enroll e
+    FROM   teach t, enroll e
     WHERE  e.s_id = sStudentId and e.year = nYear and
-         e.semester = nSemester  and  e.c_name = c.c_name and e.c_no = c.c_no;
+         e.semester = nSemester  and  e.c_name = t.c_name and e.c_no = t.c_no;
 
     SELECT c_grade,c_name
     INTO nCourseUnit,nCname
-    FROM course
+    FROM teach
     WHERE c_no = sCourseId;
 
     IF (nSumCourseUnit + nCourseUnit > 18)
