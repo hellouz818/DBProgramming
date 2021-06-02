@@ -16,7 +16,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
 nCname VARCHAR2(60);
   BEGIN
     result := '';
-    nTeachMax:=3;
+
   DBMS_OUTPUT.put_line('#');
   DBMS_OUTPUT.put_line(sStudentId || '님이 과목번호 ' || sCourseId ||
   ', 분반 ' || TO_CHAR(nCourseIdNo) || '의 수강 등록을 요청하였습니다.');
@@ -52,11 +52,11 @@ nCname VARCHAR2(60);
     END IF;
 
     /* 에러 처리 3 : 수강신청 인원 초과 여부 */
-   /*SELECT t_max
+   SELECT t_max
     INTO nTeachMax
     FROM   teach
     WHERE  t_year= nYear and t_semester = nSemester
-   and c_no = sCourseId and split_no= nCourseIdNo; */
+   and c_no = sCourseId and split_no= nCourseIdNo; 
 
     SELECT COUNT(*)
     INTO   nCnt
