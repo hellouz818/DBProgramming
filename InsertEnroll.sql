@@ -1,4 +1,4 @@
- CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
+CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
   sCourseId IN VARCHAR2,
   nCourseIdNo IN NUMBER,
   result  OUT VARCHAR2)
@@ -13,6 +13,7 @@
     nCourseUnit  NUMBER;
     nCnt  NUMBER;
     nTeachMax  NUMBER;
+    nCname VARCHAR2(60);
   BEGIN
     result := '';
 
@@ -30,8 +31,8 @@
     WHERE  e.s_id = sStudentId and e.year = nYear and
          e.semester = nSemester  and  e.c_name = c.c_name and e.c_no = c.c_no;
 
-    SELECT c_grade
-    INTO nCourseUnit
+    SELECT c_grade,c_name
+    INTO nCourseUnit,nCname
     FROM course
     WHERE c_no = sCourseId;
 
@@ -92,8 +93,8 @@
 
 
   /* 수강 신청 등록 */
-    INSERT INTO enroll(S_ID,C_NO,SPLIT_NO,YEAR,SEMESTER)
-    VALUES (sStudentId, sCourseId, nCourseIdNo, nYear, nSemester);
+    INSERT INTO enroll(S_ID,C_NO,C_NAME,SPLIT_NO,YEAR,SEMESTER)
+    VALUES (sStudentId, sCourseId, nCname,nCourseIdNo, nYear, nSemester);
   COMMIT;
     result := '수강신청 등록이 완료되었습니다.';
   EXCEPTION
