@@ -2,7 +2,7 @@
 CREATE TABLE course
 (
     c_no       VARCHAR2(30)    NOT NULL, 
-    c_name     VARCHAR2(30)    NOT NULL, 
+    c_name     VARCHAR2(60)    NOT NULL, 
     c_grade    NUMBER          NOT NULL, 
     CONSTRAINT course_pk PRIMARY KEY (c_no)
 );
