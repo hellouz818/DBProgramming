@@ -9,7 +9,7 @@ CREATE TABLE teach
     t_professor    VARCHAR2(30)    NOT NULL, 
     place          VARCHAR2(30)    NOT NULL, 
     c_no           VARCHAR2(30)    NOT NULL, 
-    c_name         VARCHAR2(30)    NOT NULL, 
+    c_name         VARCHAR2(60)    NOT NULL, 
     c_grade        NUMBER    NOT NULL, 
     CONSTRAINT teach_pk PRIMARY KEY (t_year, t_semester, split_no, c_no)
 );
