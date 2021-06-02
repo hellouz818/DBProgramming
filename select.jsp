@@ -44,8 +44,8 @@ ResultSet rs=null;
 ResultSet RS=null;
 String mySQL = "";
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-String user="db1912056";
-String password="ss2";
+String user="db1912056";//바꿔!
+String password="ss2";//바꿔!
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
 
 int year=0;//폼으로 받아오는 년도
@@ -152,7 +152,7 @@ if(semester==1){
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select t_time, c_no, c_name, split_no, c_grade, place from teach where c_no in(select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
+mySQL="select distinct teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'";
 myResultSet=STMT.executeQuery(mySQL);
 
 if(myResultSet!=null){
@@ -190,7 +190,7 @@ int sum_course=0;
 int sum_grade=0;
 stmt2=myConn.createStatement();
 
-mySQL="CREATE OR REPLACE VIEW Finally_Sum as select c_no, c_grade from teach where c_no in (select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
+mySQL="CREATE OR REPLACE VIEW Finally_Sum as select c_no, c_grade from course where c_no in (select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
 stmt2.execute(mySQL);
 mySQL="select count(*), sum(c_grade) from Finally_Sum";
 RS=stmt2.executeQuery(mySQL);
