@@ -35,7 +35,7 @@ if (myResultSet != null) {
 <tr>
   <td align="center"><%= c_no %></td> <td align="center"><%= split_no %></td> 
   <td align="center"><%= c_name %></td><td align="center"><%= grade %></td>
-  <td align="center"><a href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>&c_name=<%=c_name%>">신청</a></td>
+  <td align="center"><a href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
 </tr>
 <%
 		}
