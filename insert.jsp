@@ -1,49 +1,48 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.sql.*" %>
-
-<html><head><title> 수강신청 입력 </title></head>
+<%@ page import="java.sql.*"  %>
+<html><head><title>수강신청 입력</title></head>
 <body>
+<%@ include file="top.jsp" %>
+<%   if (session_id==null) response.sendRedirect("login.jsp");  %>
 
-<%	
-	String s_id = (String)session.getAttribute("user");
-	String c_no = request.getParameter("c_no");
-	String c_name = request.getParameter("c_name");
-	int split_no = Integer.parseInt(request.getParameter("split_no"));
-%>
-<%		
-	Connection myConn = null;    String	result = null;	
+<table class="enroll_tb" width="75%" align="center" border>
+<br>
+<tr><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th>
+      <th class="enroll_th">수강신청</th></tr>
+<%
+	Connection myConn = null;
+	Statement stmt = null;	
+	ResultSet myResultSet = null;
+	String mySQL = "";
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user="db1914062";
 	String passwd="oracle";
-	String dbdriver = "oracle.jdbc.driver.OracleDriver";    
+    String dbdriver = "oracle.jdbc.driver.OracleDriver";    
 	try {
 		Class.forName(dbdriver);
-  	        myConn =  DriverManager.getConnection (dburl, user, passwd);
+	    myConn =  DriverManager.getConnection (dburl, user, passwd);
+		stmt = myConn.createStatement();	
     } catch(SQLException ex) {
 	     System.err.println("SQLException: " + ex.getMessage());
     }
-CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?,?)}");	
-	cstmt.setString(1, s_id);
-	cstmt.setString(2, c_no);
-	cstmt.setInt(3,split_no);
-	cstmt.setString(4,c_name);
-	cstmt.registerOutParameter(5, java.sql.Types.VARCHAR);	
-	try  {  	
-		cstmt.execute();
-		result = cstmt.getString(5);		
+mySQL = "select c_no,split_no,c_name,c_grade from teach where c_no not in (select c_no from enroll where s_id='" + session_id + "')";
+	
+myResultSet = stmt.executeQuery(mySQL);
+if (myResultSet != null) {
+	while (myResultSet.next()) {	
+		String c_no = myResultSet.getString("c_no");  //과목번호
+		int split_no = myResultSet.getInt("split_no");	//분반	
+		String c_name = myResultSet.getString("c_name");  //과목명
+		int grade = myResultSet.getInt("c_grade");	 //학점
 %>
-<script>	
-	alert("<%= result %>"); 
-	location.href="insert.jsp";
-</script>
-<%		
-	} catch(SQLException ex) {		
-		 System.err.println("SQLException: " + ex.getMessage());
-	}  
-	finally {
-	    if (cstmt != null) 
-            try { myConn.commit(); cstmt.close();  myConn.close(); }
- 	      catch(SQLException ex) { }
-     }
+<tr>
+  <td class="enroll_td" align="center"><%= c_no %></td> <td class="enroll_td" align="center"><%= split_no %></td> 
+  <td class="enroll_td" align="center"><%= c_name %></td><td class="enroll_td" align="center"><%= grade %></td>
+  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>&c_name=<%=c_name%>">신청</a></td>
+</tr>
+<%
+		}
+	}
+	stmt.close();  myConn.close();
 %>
-</form></body></html>
+</table></body></html>
