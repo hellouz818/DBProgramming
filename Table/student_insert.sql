@@ -2,7 +2,7 @@
 
 INSERT INTO student VALUES ('1900001', 'chlwlsdud','최진영', 2019);
 INSERT INTO student VALUES ('1800001', 'dbwldus','유지연', 2018);
-INSERT INTO student VALUES ('1900002', 'dntnghk','유수화', 2019);
+INSERT INTO student VALUES ('1900002', 'dbtnghk','유수화', 2019);
 INSERT INTO student VALUES ('1900003', 'rkddbstj','강윤서', 2019);
 
 INSERT INTO student VALUES ('1700001', 'cvztea','김종현', 2017);
