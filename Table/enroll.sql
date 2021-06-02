@@ -5,7 +5,7 @@ CREATE TABLE enroll
     year        NUMBER          NOT NULL, 
     semester    NUMBER          NOT NULL, 
     c_no        VARCHAR2(30)    NOT NULL, 
-    c_name      VARCHAR2(30)    NOT NULL, 
+    c_name      VARCHAR2(60)    NOT NULL, 
     split_no    NUMBER          NOT NULL
 );
 
