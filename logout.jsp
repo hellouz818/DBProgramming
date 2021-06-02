@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <% session.invalidate(); %> 
 <script> 
-	alert("·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
+	alert("ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	location.href="main.jsp"; 
 </script>
