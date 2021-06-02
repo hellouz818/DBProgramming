@@ -34,7 +34,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     SELECT c_grade,c_name
     INTO nCourseUnit,nCname
     FROM teach
-    WHERE c_no = sCourseId;
+    WHERE c_no = sCourseId and split_no=nCourseIdNo;
 
     IF (nSumCourseUnit + nCourseUnit > 18)
     THEN
@@ -107,7 +107,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     WHEN duplicate_time  THEN
    result := '이미 등록된 과목 중 중복되는 시간이 존재합니다';
     WHEN OTHERS THEN
-         ROLLBACK;
-         result := SQLCODE;
+         result :=SQLCODE;
+COMMIT;
 END;
 /
