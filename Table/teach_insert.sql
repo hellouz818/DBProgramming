@@ -88,13 +88,13 @@ INSERT INTO teach VALUES (2021, 1, 3, 1, 2, '정상현', '명신관204', 'F101',
 
 INSERT INTO teach VALUES (2020, 2, 3, 1, 5, '이다도시', '명신관205', 'F301', '프랑스어작문I', 3);
 INSERT INTO teach VALUES (2020, 2, 2, 2, 5, '이다도시', '명신관205', 'F301', '프랑스어작문I', 3);
-INSERT INTO teach VALUES (2020, 2, 1, 2, 5, '이다도시', '명신관205', 'F301', '프랑스어작문I', 3);
+INSERT INTO teach VALUES (2020, 2, 1, 3, 5, '이다도시', '명신관205', 'F301', '프랑스어작문I', 3);
 
 INSERT INTO teach VALUES (2020, 2, 3, 1, 4, '서은영', '명신관206', 'F202', '프랑스어회화I', 3);
-INSERT INTO teach VALUES (2020, 2, 3, 1, 4, '서은영', '명신관206', 'F202', '프랑스어회화I', 3);
+INSERT INTO teach VALUES (2020, 2, 3, 2, 4, '서은영', '명신관206', 'F202', '프랑스어회화I', 3);
 
 INSERT INTO teach VALUES (2020, 2, 3, 1, 4, '문시연', '명신관207', 'F405', '프랑스연극의이해', 3);
-INSERT INTO teach VALUES (2020, 2, 3, 1, 4, '문시연', '명신관207', 'F405', '프랑스연극의이해', 3);
+INSERT INTO teach VALUES (2020, 2, 3, 2, 4, '문시연', '명신관207', 'F405', '프랑스연극의이해', 3);
 
 
 /*의류학과*/
@@ -121,7 +121,7 @@ INSERT INTO teach VALUES (2020, 2, 4, 2, 3, '정지혜', '명신관402', 'P400',
 INSERT INTO teach VALUES (2020, 2, 3, 3, 3, '나정은', '명신관403', 'P400', '스포츠의학', 3);
 
 INSERT INTO teach VALUES (2020, 2, 1, 1, 6, '이보람', '명신관404', 'P106', '체육학개론', 3);
-INSERT INTO teach VALUES (2020, 2, 1, 1, 6, '서민석', '명신관404', 'P106', '체육학개론', 3);
+INSERT INTO teach VALUES (2020, 2, 1, 2, 6, '서민석', '명신관404', 'P106', '체육학개론', 3);
 
 INSERT INTO teach VALUES (2020, 2, 4, 1, 15, '이경철', '야외수업', 'P107', '축구I', 1);
 
