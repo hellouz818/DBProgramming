@@ -1,9 +1,4 @@
-/*프로시저 변수가 의미하는것*/
-StudentID : s_id
-sCourseID : c_no
-nCouseridNO : split_no
-
-SQL> CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
+ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
   sCourseId IN VARCHAR2,
   nCourseIdNo IN NUMBER,
   result  OUT VARCHAR2)
@@ -29,16 +24,16 @@ SQL> CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     nSemester := Date2EnrollSemester(SYSDATE);
 
   /* 에러 처리 1 : 최대학점 초과여부 */
-    SELECT SUM(c.grade)
+    SELECT SUM(c.c_grade)
     INTO nSumCourseUnit
     FROM   course c, enroll e
     WHERE  e.s_id = sStudentId and e.year = nYear and
          e.semester = nSemester  and  e.c_name = c.c_name and e.c_no = c.c_no;
 
-    SELECT grade
+    SELECT c_grade
     INTO nCourseUnit
     FROM course
-    WHERE c_no = sCourseId and split_no = nCourseIdNo;
+    WHERE c_no = sCourseId;
 
     IF (nSumCourseUnit + nCourseUnit > 18)
     THEN
