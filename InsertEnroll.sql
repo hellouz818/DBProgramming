@@ -51,11 +51,11 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     END IF;
 
     /* 에러 처리 3 : 수강신청 인원 초과 여부 */
-   /*SELECT t_max
+   SELECT t_max
     INTO nTeachMax
     FROM   teach
     WHERE  t_year= nYear and t_semester = nSemester
-   and c_no = sCourseId and split_no= nCourseIdNo; */
+   and c_no = sCourseId and split_no= nCourseIdNo;
 
     SELECT COUNT(*)
     INTO   nCnt
