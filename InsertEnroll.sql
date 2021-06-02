@@ -1,6 +1,6 @@
 CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
   sCourseId IN VARCHAR2,
-  nCourseIdNo IN NUMBER,nCname IN VARCHAR2,
+  nCourseIdNo IN NUMBER,
   result  OUT VARCHAR2)
   IS
     too_many_sumCourseUnit  EXCEPTION;
@@ -13,6 +13,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     nCourseUnit  NUMBER;
     nCnt  NUMBER;
     nTeachMax  NUMBER;
+nCname VARCHAR2(60);
   BEGIN
     result := '';
     nTeachMax:=3;
@@ -30,8 +31,8 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     WHERE  e.s_id = sStudentId and e.year = nYear and
          e.semester = nSemester  and  e.c_name = t.c_name and e.c_no = t.c_no;
 
-    SELECT c_grade
-    INTO nCourseUnit
+    SELECT c_grade,c_name
+    INTO nCourseUnit,nCname
     FROM teach
     WHERE c_no = sCourseId and split_no=nCourseIdNo;
 
@@ -51,19 +52,17 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     END IF;
 
     /* 에러 처리 3 : 수강신청 인원 초과 여부 */
-   SELECT t_max
+   /*SELECT t_max
     INTO nTeachMax
     FROM   teach
     WHERE  t_year= nYear and t_semester = nSemester
-   and c_no = sCourseId and split_no= nCourseIdNo;
+   and c_no = sCourseId and split_no= nCourseIdNo; */
 
     SELECT COUNT(*)
     INTO   nCnt
     FROM   enroll
     WHERE  year = nYear and semester = nSemester
            and c_no = sCourseId and split_no = nCourseIdNo;
-
-
     IF (nCnt >= nTeachMax)
     THEN
        RAISE too_many_students;
