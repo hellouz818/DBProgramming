@@ -12,9 +12,9 @@
 <%		
 	Connection myConn = null;    String	result = null;	
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user="db1916205";   String passwd="oracle";
+	String user="db1916205";
+	String passwd="oracle";
 	String dbdriver = "oracle.jdbc.driver.OracleDriver";    
-
 	try {
 		Class.forName(dbdriver);
   	        myConn =  DriverManager.getConnection (dburl, user, passwd);
@@ -45,4 +45,3 @@ CallableStatement cstmt = myConn.prepareCall("{call InsertEnroll(?,?,?,?)}");
      }
 %>
 </form></body></html>
-    

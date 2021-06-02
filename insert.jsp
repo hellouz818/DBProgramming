@@ -15,7 +15,6 @@
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user="db1916205";     String passwd="oracle";
      String dbdriver = "oracle.jdbc.driver.OracleDriver";    
-
 	try {
 		Class.forName(dbdriver);
 	         myConn =  DriverManager.getConnection (dburl, user, passwd);
@@ -26,7 +25,6 @@
 mySQL = "select c_no,split_no,c_name,grade from course where c_no not in (select c_no from enroll where s_id='" + session_id + "')";
 	
 myResultSet = stmt.executeQuery(mySQL);
-
 if (myResultSet != null) {
 	while (myResultSet.next()) {	
 		String c_no = myResultSet.getString("c_no");  //과목번호
@@ -45,4 +43,3 @@ if (myResultSet != null) {
 	stmt.close();  myConn.close();
 %>
 </table></body></html>
-    
