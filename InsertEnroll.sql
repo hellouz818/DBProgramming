@@ -13,7 +13,7 @@ CREATE OR REPLACE PROCEDURE InsertEnroll(sStudentId IN VARCHAR2,
     nCourseUnit  NUMBER;
     nCnt  NUMBER;
     nTeachMax  NUMBER;
-nCname VARCHAR2(30);
+nCname VARCHAR2(60);
   BEGIN
     result := '';
     nTeachMax:=3;
