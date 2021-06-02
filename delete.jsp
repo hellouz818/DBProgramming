@@ -35,7 +35,7 @@ Statement STMT=null;
 ResultSet myResultSet = null;
 String mySQL = "";
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-String user="db1914062";
+String user="db1916205";
 String password="oracle";
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
 int year;
@@ -75,15 +75,15 @@ try{
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th><th class="enroll_th">강의 삭제</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select c_time, c_no, c_name, split_no, grade, place from course where c_no in(select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
+mySQL="select t_time, c_no, c_name, split_no, c_grade, place from teach where c_no in(select c_no from enroll where s_id='"+session_id+"' and t_year='"+year+"' and t_semester='"+semester+"')";
 myResultSet=STMT.executeQuery(mySQL);
 if(myResultSet!=null){
 	while(myResultSet.next()){
-		int c_time =myResultSet.getInt("c_time");
+		int c_time =myResultSet.getInt("t_time");
 		String c_no=myResultSet.getString("c_no");
 		String c_name=myResultSet.getString("c_name");
 		int split_no=myResultSet.getInt("split_no");
-		int grade=myResultSet.getInt("grade");
+		int grade=myResultSet.getInt("c_grade");
 		String place=myResultSet.getString("place");		
 	
 	%>
