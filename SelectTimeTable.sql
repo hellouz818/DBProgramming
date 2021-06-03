@@ -9,12 +9,10 @@ v_grade teach.c_grade%TYPE;
 v_place teach.place%TYPE;
 result number;
 CURSOR timetable_infor IS
-SELECT  t_time, c_no, c_name, split_no, c_grade, place
-FROM teach
-WHERE c_no in (SELECT enroll.c_no
-FROM enroll
-WHERE enroll.s_id=sStudentId 
-and enroll.year=nYear and enroll.semester=nSemester );
+SELECT  teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place
+FROM teach,enroll
+WHERE teach.c_no=enroll.c_no and teach.t_year=enroll.year and teach.t_semester=enroll.semester and enroll.s_id=sStudentId 
+and enroll.year=nYear and enroll.semester=nSemester;
 
 BEGIN
 dbms_output.put_line(nYear||'년도 '||nSemester||'학기의 '||sStudentID||'님의 수강신청 시간표입니다.');
