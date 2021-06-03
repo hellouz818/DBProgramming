@@ -122,28 +122,3 @@ nTeachMax:=0;
 COMMIT;
 END;
 /
-
-
-declare
-  result VARCHAR2(100) := '';
- begin
- dbms_output.enable;
- dbms_output.put_line('******테스트*******');
- InsertEnroll('1900002', 'L202', 1 ,result);
-dbms_output.put_line('결과' || result);
-dbms_output.put_line('CURSOR를 이용할 테스트');
-SelectTimeTable('1900002', 2021, 2);
-end;
-/ 
-
-declare
-  result VARCHAR2(100) := '';
- begin
- dbms_output.enable;
- dbms_output.put_line('******테스트*******');
- InsertEnroll('1900002', 'L302', 1 ,result);
-dbms_output.put_line('결과' || result);
-dbms_output.put_line('CURSOR를 이용할 테스트');
-SelectTimeTable('1900002', 2021, 2);
-end;
-/ 
