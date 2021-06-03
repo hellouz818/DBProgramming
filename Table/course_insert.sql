@@ -1,6 +1,9 @@
 /*과목 번호, 과목 이름, 과목 학점*/
 
 /*교양*/
+INSERT INTO course VALUES ('A000', '비판적사고와토론', 2);
+INSERT INTO course VALUES ('A001', '융합적사고와글쓰기', 2);
+INSERT INTO course VALUES ('A002', '진로탐색과 역량개발', 1);
 INSERT INTO course VALUES ('A100', '문학과사랑의테마', 3);
 INSERT INTO course VALUES ('A101', '신화의이해', 3);
 INSERT INTO course VALUES ('A102', '패션과건강', 3);
