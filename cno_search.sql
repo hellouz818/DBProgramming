@@ -5,7 +5,7 @@ is
 begin
 
 OPEN outcome FOR
-select c_no, split_no, c_name, c_grade, t_time
+select c_no, split_no, c_name, c_grade, t_time, t_max, place
 from teach
 where t_year=2021 and t_semester=2 and c_no=s_cno 
 and (c_no,split_no) not in 
