@@ -75,7 +75,7 @@ try{
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th><th class="enroll_th">강의 삭제</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'";
+mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"' order by teach.t_time";
 myResultSet=STMT.executeQuery(mySQL);
 if(myResultSet!=null){
 	while(myResultSet.next()){
