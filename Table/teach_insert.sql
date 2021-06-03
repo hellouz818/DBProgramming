@@ -45,6 +45,14 @@ INSERT INTO teach VALUES (2021, 1, 5, 2, 2, '김미자', '순헌관107', 'A300',
 INSERT INTO teach VALUES (2021, 1, 5, 1, 4, '최병진', '명신관610', 'A400', '독일어I', 3);
 INSERT INTO teach VALUES (2021, 1, 5, 2, 4, '이주은', '명신관612', 'A400', '독일어I', 3);
 
+INSERT INTO teach VALUES (2021, 1, 2, 1, 3, '박성희', '명신관614', 'A405', '일본어II', 3);
+INSERT INTO teach VALUES (2021, 1, 2, 2, 3, '복보경', '명신관615', 'A405', '일본어II', 3);
+INSERT INTO teach VALUES (2021, 1, 2, 3, 3, '은수희', '명신관616', 'A405', '일본어II', 3);
+
+INSERT INTO teach VALUES (2021, 1, 2, 1, 3, '이소동', '명신관617', 'A406', '중국어II', 3);
+INSERT INTO teach VALUES (2021, 1, 2, 1, 3, '강수정', '명신관618', 'A406', '중국어II', 3);
+
+
 INSERT INTO teach VALUES (2021, 2, 6, 1, 5, '이광모', '순헌관301', 'A001', '융합적사고와글쓰기', 2);
 INSERT INTO teach VALUES (2021, 2, 5, 2, 5, '이승훈', '순헌관301', 'A001', '융합적사고와글쓰기', 2);
 INSERT INTO teach VALUES (2021, 2, 4, 3, 5, '이은자', '순헌관301', 'A001', '융합적사고와글쓰기', 2);
@@ -73,8 +81,16 @@ INSERT INTO teach VALUES (2021, 2, 3, 2, 10, '최승경', '순헌관102', 'A303'
 
 INSERT INTO teach VALUES (2021, 2, 4, 1, 20, '박동곤', '순헌관202', 'A304', '화학으로본세상이야기(K-MOOC)', 3);
 
-INSERT INTO teach VALUES (2021, 2, 5, 1, 4, '최병진', '명신관610', 'A400', '독일어I', 3);
-INSERT INTO teach VALUES (2021, 2, 5, 2, 4, '이주은', '명신관612', 'A400', '독일어I', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 1, 4, '최병진', '명신관610', 'A400', '독일어II', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 2, 4, '이주은', '명신관612', 'A400', '독일어II', 3);
+
+
+INSERT INTO teach VALUES (2021, 2, 2, 1, 3, '박성희', '명신관614', 'A405', '일본어II', 3);
+INSERT INTO teach VALUES (2021, 2, 2, 2, 3, '복보경', '명신관615', 'A405', '일본어II', 3);
+INSERT INTO teach VALUES (2021, 2, 2, 3, 3, '은수희', '명신관616', 'A405', '일본어II', 3);
+
+INSERT INTO teach VALUES (2021, 2, 2, 1, 3, '이소동', '명신관617', 'A406', '중국어II', 3);
+INSERT INTO teach VALUES (2021, 2, 2, 1, 3, '강수정', '명신관618', 'A406', '중국어II', 3);
 
 INSERT INTO teach VALUES (2021, 2, 5, 1, 4, '이욱한', '명신관611', 'A401', '사랑과헌법', 3);
 INSERT INTO teach VALUES (2021, 2, 4, 2, 4, '이욱한', '명신관611', 'A401', '사랑과헌법', 3);
