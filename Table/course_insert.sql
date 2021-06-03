@@ -19,6 +19,9 @@ INSERT INTO course VALUES ('A302', '종이접기로배우는창의적설계', 2)
 INSERT INTO course VALUES ('A303', '통계학입문', 3);
 INSERT INTO course VALUES ('A304', '화학으로본세상이야기(K-MOOC)', 3);
 
+INSERT INTO course VALUES ('A400', '독일어I', 3);
+INSERT INTO course VALUES ('A401', '사랑과헌법', 3);
+
 /*컴퓨터과학과*/
 INSERT INTO course VALUES ('C300', '데이터베이스프로그래밍', 3);
 INSERT INTO course VALUES ('C201', '데이터사이언스개론', 3);
