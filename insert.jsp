@@ -27,7 +27,7 @@
     }
 	
 
-mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time from teach where t_year=2021 and t_semester=2 and c_no not in (select c_no from enroll where s_id='" + session_id + "') order by t_time";
+mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time from teach where t_year=2021 and t_semester=2 and (c_no,split_no) not in (select e.c_no,e.split_no from enroll e,teach t where s_id='" + session_id + " and t.split_no=e.split_no') order by t_time";
 	
 myResultSet = stmt.executeQuery(mySQL);
 if (myResultSet != null) {
