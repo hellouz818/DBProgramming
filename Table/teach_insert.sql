@@ -137,7 +137,6 @@ INSERT INTO teach VALUES (2021, 2, 5, 1, 7, '박영훈', '명신관603', 'C305',
 INSERT INTO teach VALUES (2021, 2, 6, 1, 7, '박영훈', '명신관603', 'C305', '알고리즘', 3);
 INSERT INTO teach VALUES (2021, 2, 6, 1, 7, '이현자', '명신관604', 'C305', '알고리즘', 3);
 
-
 /*법학부*/
 INSERT INTO teach VALUES (2021, 1, 5, 1, 6, '정경수', '명신관101', 'L100', '국제법I', 3);
 INSERT INTO teach VALUES (2021, 1, 4, 2, 6, '정경수', '명신관101', 'L100', '국제법I', 3);
