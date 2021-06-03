@@ -1,6 +1,8 @@
 CREATE OR REPLACE PROCEDURE SelectTimeTable
 ( sStudentId IN VARCHAR2, nYear IN NUMBER, nSemester IN NUMBER)
 IS
+v_year teach.t_year%TYPE;
+v_semester teach.t_semester%TYPE;
 v_time teach.t_time%TYPE;
 v_no teach.c_no%TYPE;
 v_name teach.c_name%TYPE;
@@ -9,10 +11,10 @@ v_grade teach.c_grade%TYPE;
 v_place teach.place%TYPE;
 result number;
 CURSOR timetable_infor IS
-SELECT  teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place
+SELECT  t_year, t_semester, teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place
 FROM teach,enroll
 WHERE teach.c_no=enroll.c_no and teach.t_year=enroll.year and teach.t_semester=enroll.semester and enroll.s_id=sStudentId 
-and enroll.year=nYear and enroll.semester=nSemester;
+and enroll.year=nYear and enroll.semester=nSemester and teach.split_no=enroll.split_no;
 
 BEGIN
 dbms_output.put_line(nYear||'년도 '||nSemester||'학기의 '||sStudentID||'님의 수강신청 시간표입니다.');
@@ -20,9 +22,9 @@ result:=0;
 
 OPEN timetable_infor;
 LOOP
-FETCH timetable_infor INTO v_time, v_no, v_name,v_split_no, v_grade,v_place;
+FETCH timetable_infor INTO v_year, v_semester,v_time, v_no, v_name,v_split_no, v_grade,v_place;
 EXIT WHEN timetable_infor%NOTFOUND;
-dbms_output.put_line( '교시 : ' || v_time || ', 과목번호 : ' || v_no || ', 과목명 : ' || v_name || ', 분반 : ' || v_split_no || ', 학점 : ' || v_grade || ', 장소 : ' || v_place);
+dbms_output.put_line('년도:'||v_year||'    학기 : '||v_semester|| '    교시 : ' || v_time || ', 과목번호 : ' || v_no || ', 과목명 : ' || v_name || ', 분반 : ' || v_split_no || ', 학점 : ' || v_grade || ', 장소 : ' || v_place);
 result:=result+v_grade;
 END LOOP;
 dbms_output.put_line('총 '||timetable_infor%rowcount||'과목과 총 '||result||'학점을 신청하였습니다.');
