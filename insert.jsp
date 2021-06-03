@@ -28,8 +28,8 @@ function fff(){
 	
 	String mySQL = "";
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user="db1912056";
-	String passwd="ss2";
+	String user="db1914062";
+	String passwd="oracle";
     String dbdriver = "oracle.jdbc.driver.OracleDriver";    
 	
     
@@ -48,25 +48,25 @@ function fff(){
 	if(session_id instanceof String){System.out.println("session아이디는 문자열이다");}
 	%>
 
+<%
+if(cno!=""&&cno!=null){
+	%>
+	<h4 class="search_result" text-algin="center">2021년 2학기 <%=cno %>수업 목록</h4>
+	<%
+}else {
+	%><h4 class="search_title" align="center">2021년 2학기 수강신청가능목록</h4><%
+}
+%>
+<div class="bar">
 <form id="SSS" method="POST" action="insert.jsp" width="75%" align="center">
 <input type="text" name="cno" value="">
 <input type="submit" value="과목아이디검색" onclick="fff()"/>
 </form>
-
-<%
-if(cno!=""&&cno!=null){
-	%>
-	<h4>2021년 2학기 과목아이디=<%=cno %> 목록</h4>
-	<%
-}else {
-	%><h4>2021년 2학기 수강신청가능목록</h4><%
-}
-%>
+</div>
 
 <table class="enroll_tb" width="75%" align="center" border>
 <br>
-<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th>
-      <th class="enroll_th">수강신청</th></tr>
+<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th><th class="enroll_th">신청</th></tr>
 	<%
 	//검색완료후 빈검색->초기화 else로 가는지 확인
 	if(cno!=null&&cno!=""){
@@ -85,6 +85,8 @@ if(cno!=""&&cno!=null){
 				String c_name = rs.getString("c_name");  //과목명
 				int grade = rs.getInt("c_grade");	 //학점
 				int time= rs.getInt("t_time");	//교시
+				int t_max = rs.getInt("t_max"); //최대인원
+				String place = rs.getString("place");	//장소
 				
 				%>
 				<tr>
@@ -93,6 +95,8 @@ if(cno!=""&&cno!=null){
 				  <td class="enroll_td" align="center"><%= split_no %></td> 
 				  <td class="enroll_td" align="center"><%= c_name %></td>
 				  <td class="enroll_td" align="center"><%= grade %></td>
+  				  <td class="enroll_td" align="center"><%= t_max %></td>
+  				  <td class="enroll_td" align="center"><%= place %></td>
 				  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
 				</tr>
 				<%
@@ -104,7 +108,7 @@ if(cno!=""&&cno!=null){
 	}
 	else{
 		//mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time from teach where t_year=2021 and t_semester=2 and (c_no,split_no) not in (select e.c_no,e.split_no from enroll e,teach t where s_id='" + session_id + "' and t.split_no=e.split_no') order by t_time";
-		mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time from teach where t_year=2021 and t_semester=2 and (c_no,split_no) not in (select e.c_no,e.split_no from enroll e,teach t where s_id='" + session_id + " and t.split_no=e.split_no') order by t_time";
+		mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time, t_max, place from teach where t_year=2021 and t_semester=2 and (c_no,split_no) not in (select e.c_no,e.split_no from enroll e,teach t where s_id='" + session_id + " and t.split_no=e.split_no') order by t_time";
 		
 		myResultSet = stmt.executeQuery(mySQL);
 		if (myResultSet != null) {
@@ -114,6 +118,8 @@ if(cno!=""&&cno!=null){
 				String c_name = myResultSet.getString("c_name");  //과목명
 				int grade = myResultSet.getInt("c_grade");	 //학점
 				int time= myResultSet.getInt("t_time");	//교시
+				int t_max = myResultSet.getInt("t_max");	//최대인원
+				String place = myResultSet.getString("place");	//장소
 		%>
 		<tr>
 		  <td class="enroll_td" align="center"><%= time %></td>
@@ -121,6 +127,8 @@ if(cno!=""&&cno!=null){
 		  <td class="enroll_td" align="center"><%= split_no %></td> 
 		  <td class="enroll_td" align="center"><%= c_name %></td>
 		  <td class="enroll_td" align="center"><%= grade %></td>
+  		  <td class="enroll_td" align="center"><%= t_max %></td>
+   		  <td class="enroll_td" align="center"><%= place %></td>
 		  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
 		</tr>
 		<%
