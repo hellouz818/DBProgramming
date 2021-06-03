@@ -21,8 +21,12 @@ function fff(){
 <%
 	Connection myConn = null;
 	Statement stmt = null;
+	Statement stmt2=null;
+	Statement stmt3=null;
 	java.sql.CallableStatement cstmt=null;
 	ResultSet myResultSet = null;
+	ResultSet myResultSet2 = null;
+	ResultSet myResultSet3 = null;
 	ResultSet rset;
 	ResultSet rs;
 	
@@ -66,7 +70,7 @@ if(cno!=""&&cno!=null){
 
 <table class="enroll_tb" width="75%" align="center" border>
 <br>
-<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th><th class="enroll_th">신청</th></tr>
+<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">현재인원</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th><th class="enroll_th">수강신청</th></tr>
 	<%
 	//검색완료후 빈검색->초기화 else로 가는지 확인
 	if(cno!=null&&cno!=""){
@@ -87,6 +91,14 @@ if(cno!=""&&cno!=null){
 				int time= rs.getInt("t_time");	//교시
 				int t_max = rs.getInt("t_max"); //최대인원
 				String place = rs.getString("place");	//장소
+				int nCnt =0;
+				stmt3=myConn.createStatement();
+				mySQL="select COUNT(*) from enroll where c_no='"+ c_no +"' and split_no='" + split_no +"'";
+				myResultSet3=stmt3.executeQuery(mySQL);
+				if(myResultSet3.next()){
+					nCnt = myResultSet3.getInt("COUNT(*)");			
+				}
+				
 				
 				%>
 				<tr>
@@ -95,6 +107,7 @@ if(cno!=""&&cno!=null){
 				  <td class="enroll_td" align="center"><%= split_no %></td> 
 				  <td class="enroll_td" align="center"><%= c_name %></td>
 				  <td class="enroll_td" align="center"><%= grade %></td>
+   				  <td id="nCnt" align="center"><%= nCnt %></td>
   				  <td class="enroll_td" align="center"><%= t_max %></td>
   				  <td class="enroll_td" align="center"><%= place %></td>
 				  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
@@ -120,6 +133,13 @@ if(cno!=""&&cno!=null){
 				int time= myResultSet.getInt("t_time");	//교시
 				int t_max = myResultSet.getInt("t_max");	//최대인원
 				String place = myResultSet.getString("place");	//장소
+				int nCnt = 0;
+				stmt2=myConn.createStatement();
+				mySQL="select COUNT(*) from enroll where c_no='"+ c_no +"' and split_no='" + split_no +"'";
+				myResultSet2=stmt2.executeQuery(mySQL);
+				if(myResultSet2.next()){
+					nCnt = myResultSet2.getInt("COUNT(*)");			
+				}
 		%>
 		<tr>
 		  <td class="enroll_td" align="center"><%= time %></td>
@@ -127,6 +147,7 @@ if(cno!=""&&cno!=null){
 		  <td class="enroll_td" align="center"><%= split_no %></td> 
 		  <td class="enroll_td" align="center"><%= c_name %></td>
 		  <td class="enroll_td" align="center"><%= grade %></td>
+		  <td id="nCnt" align="center"><%= nCnt %></td>
   		  <td class="enroll_td" align="center"><%= t_max %></td>
    		  <td class="enroll_td" align="center"><%= place %></td>
 		  <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
