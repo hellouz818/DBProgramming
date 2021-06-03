@@ -19,7 +19,7 @@ OPEN timetable_infor(nYear, nSemester);
 LOOP
 FETCH timetable_infor INTO v_teach.t_year, v_teach.t_semester, v_teach.t_time, v_teach.c_no, v_teach.c_name, v_teach.split_no, v_teach.c_grade, v_teach.place;
 EXIT WHEN timetable_infor%NOTFOUND;
-dbms_output.put_line('년도:'||v_teach.t_year||'    학기 : '||v_teach.t_semester);
+dbms_output.put_line('년도:'||v_teach.t_year||'    학기 : '||v_teach.t_semester|| '    교시 : ' || v_teach.t_time || '     과목번호 : ' || v_teach.c_no || '     과목명 : ' || v_teach.c_name || '    분반 : ' || v_teach.split_no || '     학점 : ' || v_teach.c_grade || '     장소 : ' || v_teach.place);
 result:=result+v_teach.c_grade;
 END LOOP;
 dbms_output.put_line('총 '||timetable_infor%rowcount||'과목과 총 '||result||'학점을 신청하였습니다.');
