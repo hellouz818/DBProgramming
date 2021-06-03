@@ -105,7 +105,7 @@ form{
     border-collapse: collapse;
 }
 .enroll_tb {
-	width:100%;
+	/*width:100%;*/
     border-top: 1px solid;
     border-collapse: collapse;
 }
@@ -127,6 +127,12 @@ form{
 #select_title{
 	font-family: 'GyeonggiTitleM';
 	font-size : 20px;
+}
+
+.select_result{
+	font-family: 'GyeonggiTitleM';
+	font-size : 18px;
+	text-align : center;
 }
 
 #delete_title{
@@ -154,4 +160,9 @@ form{
 	font-family: 'GyeonggiTitleM';
 	align : center;
 	padding : 5px;
+}
+
+.bar{
+	padding-left : 13%;
+	padding-botton : 5%;
 }
