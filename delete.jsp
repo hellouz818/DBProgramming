@@ -32,7 +32,9 @@ function local(){
 Connection myConn = null;      
 CallableStatement stmt = null;	
 Statement STMT=null;
+Statement stmt2=null;
 ResultSet myResultSet = null;
+ResultSet myResultSet2 = null;
 String mySQL = "";
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 String user="db1914062";
@@ -72,7 +74,7 @@ try{
 
 
 <table class="enroll_tb" width="75%" align="center" border>
-<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th><th class="enroll_th">수강취소</th></tr>
+<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">현재인원</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th><th class="enroll_th">수강취소</th></tr>
 <%
 STMT=myConn.createStatement();
 mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place, teach.t_max from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'order by t_time";
@@ -85,7 +87,14 @@ if(myResultSet!=null){
 		int split_no=myResultSet.getInt("split_no");
 		int grade=myResultSet.getInt("c_grade");
 		int t_max=myResultSet.getInt("t_max");
-		String place=myResultSet.getString("place");		
+		String place=myResultSet.getString("place");
+		int nCnt = 0;
+		stmt2=myConn.createStatement();
+		mySQL="select COUNT(*) from enroll where c_no='"+ c_no +"' and split_no='" + split_no +"'";
+		myResultSet2=stmt2.executeQuery(mySQL);
+		if(myResultSet2.next()){
+			nCnt = myResultSet2.getInt("COUNT(*)");			
+		}
 	
 	%>
 	<tr>
@@ -94,6 +103,7 @@ if(myResultSet!=null){
 	<td class="enroll_td" align="center"><%=split_no%></td>
 	<td class="enroll_td" align="center"><%=c_name%></td>
 	<td class="enroll_td" align="center"><%=grade%></td>
+	<td id="nCnt" align="center"><%=nCnt%></td>
 	<td class="enroll_td" align="center"><%=t_max%></td>
 	<td class="enroll_td" align="center"><%=place%></td>
 	<td class="enroll_td" align="center"><a id="delete_btn" href="delete_verify.jsp?split_no=<%=split_no%>&c_no=<%= c_no%>">취소</a></td>
