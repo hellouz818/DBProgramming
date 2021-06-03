@@ -126,14 +126,15 @@ if(semester==1){
 }//수강신청 날짜 선택함
 %>
 </select></span>
-<span align="right"><input type="submit" value="조회" onclick="local()"/></span>
+<span align="right"><input class="search" type="submit" value="조회" onclick="local()"/></span>
 </form>
 </div>
+<br>
 <table class="enroll_tb" width="75%" align="center" border>
-<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th></tr>
+<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th><th class="enroll_th">최대인원</th><th class="enroll_th">장소</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'order by t_time";
+mySQL="select teach.t_time, teach.t_max, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'order by t_time";
 myResultSet=STMT.executeQuery(mySQL);
 if(myResultSet!=null){
 	while(myResultSet.next()){
@@ -142,15 +143,17 @@ if(myResultSet!=null){
 		String c_name=myResultSet.getString("c_name");
 		int split_no=myResultSet.getInt("split_no");
 		int grade=myResultSet.getInt("c_grade");
+		int t_max=myResultSet.getInt("t_max");
 		String place=myResultSet.getString("place");	
 	
 	%>
 	<tr>
 	<td class="enroll_td" align="center"><%=c_time%></td>
 	<td class="enroll_td" align="center"><%=c_no%></td>
-	<td class="enroll_td" align="center"><%=c_name%></td>
 	<td class="enroll_td" align="center"><%=split_no%></td>
+	<td class="enroll_td" align="center"><%=c_name%></td>
 	<td class="enroll_td" align="center"><%=grade%></td>
+	<td class="enroll_td" align="center"><%=t_max%></td>
 	<td class="enroll_td" align="center"><%=place%></td>
 	</tr>
 	<%
