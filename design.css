@@ -165,5 +165,15 @@ form{
 
 .bar{
 	padding-left : 13%;
-	padding-botton : 10%;
+}
+
+.search_title{
+	font-family: 'GyeonggiTitleM';
+	font-size : 20px;
+}
+.search_result{
+	font-family: 'GyeonggiTitleM';
+	font-size : 20px;
+	text-algin : center;
+	padding-left : 38%;
 }
