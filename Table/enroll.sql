@@ -13,8 +13,8 @@ ALTER TABLE enroll
     ADD CONSTRAINT fk_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);
 
-/*ALTER TABLE enroll
+ALTER TABLE enroll
     ADD CONSTRAINT FK_enroll_year_teach_t_year FOREIGN KEY (year, semester, c_no, split_no)
-        REFERENCES teach (t_year, t_semester, c_no, split_no);*/
+        REFERENCES teach (t_year, t_semester, c_no, split_no);
 
 /*DROP TABLE enroll;*/
