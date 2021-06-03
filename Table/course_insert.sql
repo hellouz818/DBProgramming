@@ -22,12 +22,15 @@ INSERT INTO course VALUES ('A304', '화학으로본세상이야기(K-MOOC)', 3);
 /*컴퓨터과학과*/
 INSERT INTO course VALUES ('C300', '데이터베이스프로그래밍', 3);
 INSERT INTO course VALUES ('C201', '데이터사이언스개론', 3);
+INSERT INTO course VALUES ('C202', '자바프로그래밍', 3);
 INSERT INTO course VALUES ('C102', '소프트웨어의이해', 3);
 INSERT INTO course VALUES ('C203', '시스템종합설계', 3);
+INSERT INTO course VALUES ('C204', '자료구조', 3);
 INSERT INTO course VALUES ('C304', '운영체제', 3);
 INSERT INTO course VALUES ('C405', '인공지능', 3);
 INSERT INTO course VALUES ('C406', '임베디드시스템', 3);
 INSERT INTO course VALUES ('C307', '컴퓨터구조', 3);
+INSERT INTO course VALUES ('C305', '알고리즘', 3);
 
 /*법학부*/
 INSERT INTO course VALUES ('L100', '국제법I', 3);
