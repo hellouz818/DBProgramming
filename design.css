@@ -56,12 +56,13 @@ a{
 }
 
 #login_th{
+	width : 90%;
+	padding: 1%;
 	font-family :  'GyeonggiTitleM';
 	background : #22405f;
 	color : white;
 	border : none;
 	font-size : 20px;
-	padding : 5px;
 	border-radius : 30px;
 }
 #login_tb{
@@ -164,5 +165,5 @@ form{
 
 .bar{
 	padding-left : 13%;
-	padding-botton : 5%;
+	padding-botton : 10%;
 }
