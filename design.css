@@ -177,3 +177,12 @@ form{
 	text-algin : center;
 	padding-left : 38%;
 }
+#nCnt{
+	font-family: 'GyeonggiTitleM';
+	border : none;
+	padding : 8px;
+	font-size : 18px;
+	border-bottom: 1px solid black;
+    border-collapse: collapse;
+    color : #BF3056;
+}
