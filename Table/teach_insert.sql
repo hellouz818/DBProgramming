@@ -81,11 +81,16 @@ INSERT INTO teach VALUES (2021, 1, 1, 2, 3, '박동철', '프라임관202', 'C20
 INSERT INTO teach VALUES (2021, 1, 1, 1, 6, '최영우', '프라임관203', 'C102', '소프트웨어의이해', 3);
 INSERT INTO teach VALUES (2021, 1, 5, 2, 6, '최영우', '프라임관203', 'C102', '소프트웨어의이해', 3);
 
+INSERT INTO teach VALUES (2021, 1, 4, 1, 7, '박숙영', '명신관601', 'C202', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 1, 5, 1, 7, '박숙영', '명신관601', 'C202', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 1, 4, 1, 7, '최영우', '명신관602', 'C202', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 1, 5, 1, 7, '최영우', '명신관602', 'C202', '자바프로그래밍', 3);
+
 INSERT INTO teach VALUES (2021, 1, 4, 1, 4, '김윤희', '프라임관204', 'C203', '시스템종합설계', 3);
 INSERT INTO teach VALUES (2021, 1, 5, 2, 4, '김윤희', '프라임관204', 'C203', '시스템종합설계', 3);
 
-INSERT INTO teach VALUES (2021, 2, 4, 1, 3, '김주균', '프라임관203', 'C304', '운영체제', 3);
-INSERT INTO teach VALUES (2021, 2, 5, 2, 3, '김주균', '프라임관203', 'C304', '운영체제', 3);
+INSERT INTO teach VALUES (2021, 2, 4, 1, 3, '김주균', '프라임관205', 'C304', '운영체제', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 2, 3, '김주균', '프라임관205', 'C304', '운영체제', 3);
 
 INSERT INTO teach VALUES (2021, 2, 3, 1, 3, '채희준', '프라임관301', 'C405', '인공지능', 3);
 
@@ -94,6 +99,16 @@ INSERT INTO teach VALUES (2021, 2, 1, 1, 2, '김윤진', '프라임관302', 'C40
 INSERT INTO teach VALUES (2021, 2, 6, 1, 3, '문봉희', '젬마홀', 'C307', '컴퓨터구조', 3);
 INSERT INTO teach VALUES (2021, 2, 2, 2, 3, '문봉희', '젬마홀', 'C307', '컴퓨터구조', 3);
 INSERT INTO teach VALUES (2021, 2, 4, 3, 3, '문봉희', '젬마홀', 'C307', '컴퓨터구조', 3);
+
+INSERT INTO teach VALUES (2021, 2, 4, 1, 7, '유석종', '명신관601', 'C204', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 1, 7, '유석종', '명신관601', 'C204', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 2, 4, 1, 7, '이현자', '명신관602', 'C204', '자바프로그래밍', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 1, 7, '이현자', '명신관602', 'C204', '자바프로그래밍', 3);
+
+INSERT INTO teach VALUES (2021, 2, 4, 1, 7, '박영훈', '명신관603', 'C305', '알고리즘', 3);
+INSERT INTO teach VALUES (2021, 2, 5, 1, 7, '박영훈', '명신관603', 'C305', '알고리즘', 3);
+INSERT INTO teach VALUES (2021, 2, 6, 1, 7, '박영훈', '명신관603', 'C305', '알고리즘', 3);
+INSERT INTO teach VALUES (2021, 2, 6, 1, 7, '이현자', '명신관604', 'C305', '알고리즘', 3);
 
 
 /*법학부*/
