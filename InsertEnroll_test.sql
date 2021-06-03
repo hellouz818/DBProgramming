@@ -11,6 +11,6 @@ begin
     InsertEnroll('1900003', 'L302', 1, result);
     dbms_output.put_line('결과' || result);
     dbms_output.put_line('시간표 출력');
-    SelectTimeTable('1900002', 2021, 2);
+    SelectTimeTable('1900003', 2021, 2);
 end;
 /
