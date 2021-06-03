@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
@@ -44,24 +43,20 @@ ResultSet rs=null;
 ResultSet RS=null;
 String mySQL = "";
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-String user="db1912056";
-String password="ss2";
+String user="db1914062";
+String password="oracle";
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
-
 int year=0;//폼으로 받아오는 년도
 int semester=0;//폼으로 받아오는 학기
 int now_year=0;//sql 함수로 받는 year
 int now_semester=0;//sql 함수로 받는 semester
 int s_year=0;//입학년도!
-
 try{
 	Class.forName(dbdriver);
 	myConn=DriverManager.getConnection(dburl,user,password);
 }catch(SQLException ex){
 	System.err.println("SQLException: " + ex.getMessage());
 }
-
-
 try{
 	String Y=request.getParameter("year");
 	year=Integer.parseInt(Y);
@@ -73,30 +68,23 @@ try{
 	year=0;
 	semester=0;
 }
-
 String sql="{?=call Date2EnrollYear(SYSDATE)}";
 stmt=myConn.prepareCall(sql);
 stmt.registerOutParameter(1,java.sql.Types.INTEGER);
 stmt.execute();
 now_year=stmt.getInt(1);
-
 sql="{?=call Date2EnrollSemester(SYSDATE)}";
 stmt=myConn.prepareCall(sql);
 stmt.registerOutParameter(1,java.sql.Types.INTEGER);
 stmt.execute();
 now_semester=stmt.getInt(1);
-
 System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   학기 :"+now_semester);
-
 stmt1=myConn.createStatement();
 mySQL = "select s_year from student where s_id='" + session_id +"'";
 rs=stmt1.executeQuery(mySQL);
 while(rs.next()){
 	s_year =rs.getInt("s_year");
 }
-
-
-
 if(s_year>now_year){
 	%>
 	<script>
@@ -104,20 +92,13 @@ if(s_year>now_year){
 	</script>
 	<%
 }
-
 System.out.println("현재날짜에 기반한 수강신청예정 년:"+now_year+"   월 :"+now_semester+", 입학날짜 : "+s_year);//////
-
-
 if(year==0 && semester==0){
 	year=now_year;//폼에서 입력값없을땐, 즉 기본값은 현재 년도
 	semester=now_semester;//다음 학기
 }
-
-
-
 %>
 <h4 id="select_title" align="center"><%=year %>년도 <%=semester %>학기 수강신청 조회</h4>
-
 <div class="bar">
 <form id="FRM" method="POST" action="select.jsp" width="75%" align="center">
 <select align="center" name="year" size="1">
@@ -129,7 +110,6 @@ for(int i=now_year;i>=s_year;i--){
 }
 %> 
 </select>
-
 <span align="right">
 <select align="center" name="semester" size="1">
 <%
@@ -149,14 +129,12 @@ if(semester==1){
 <span align="right"><input type="submit" value="조회" onclick="local()"/></span>
 </form>
 </div>
-
 <table class="enroll_tb" width="75%" align="center" border>
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th></tr>
 <%
 STMT=myConn.createStatement();
-mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'";
+mySQL="select teach.t_time, teach.c_no, teach.c_name, teach.split_no, teach.c_grade, teach.place from teach, enroll where teach.c_no=enroll.c_no and teach.split_no=enroll.split_no and t_year=year and t_semester=semester and s_id='"+session_id+"' and enroll.year='"+year+"' and enroll.semester='"+semester+"'order by t_time";
 myResultSet=STMT.executeQuery(mySQL);
-
 if(myResultSet!=null){
 	while(myResultSet.next()){
 		int c_time =myResultSet.getInt("t_time");
@@ -181,18 +159,13 @@ if(myResultSet!=null){
 else{
 	%><h6>총 0 과목, 0 학점을 신청하였습니다.</h6><% 
 }
-
 %>
-
-
 </table>
-
 <%
 //총 몇과목 몇학점인지 뷰로 나타내기
 int sum_course=0;
 int sum_grade=0;
 stmt2=myConn.createStatement();
-
 mySQL="CREATE OR REPLACE VIEW Finally_Sum as select c_no, c_grade from course where c_no in (select c_no from enroll where s_id='"+session_id+"' and year='"+year+"' and semester='"+semester+"')";
 stmt2.execute(mySQL);
 mySQL="select count(*), sum(c_grade) from Finally_Sum";
@@ -201,9 +174,6 @@ while(RS.next()){
 	sum_course=RS.getInt("count(*)");
 	sum_grade=RS.getInt("sum(c_grade)");
 }
-
-
-
 %>
 <h6 class="select_result">총 <%=sum_course %> 과목, <%=sum_grade %> 학점을 신청하였습니다.</h6>
 <%
