@@ -7,7 +7,7 @@
 
 <table class="enroll_tb" width="75%" align="center" border>
 <br>
-<tr><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th>
+<tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">분반</th><th class="enroll_th">과목명</th><th class="enroll_th">학점</th>
       <th class="enroll_th">수강신청</th></tr>
 <%
 	Connection myConn = null;
@@ -15,7 +15,7 @@
 	ResultSet myResultSet = null;
 	String mySQL = "";
 	String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user="db1914062";
+	String user="db1916205";
 	String passwd="oracle";
     String dbdriver = "oracle.jdbc.driver.OracleDriver";    
 	try {
@@ -25,7 +25,9 @@
     } catch(SQLException ex) {
 	     System.err.println("SQLException: " + ex.getMessage());
     }
-mySQL = "select c_no,split_no,c_name,c_grade from teach where c_no not in (select c_no from enroll where s_id='" + session_id + "')";
+	
+
+mySQL = "select c_no,split_no,c_name,c_grade,t_year,t_semester,t_time from teach where t_year=2021 and t_semester=2 and c_no not in (select c_no from enroll where s_id='" + session_id + "') order by t_time";
 	
 myResultSet = stmt.executeQuery(mySQL);
 if (myResultSet != null) {
@@ -34,10 +36,14 @@ if (myResultSet != null) {
 		int split_no = myResultSet.getInt("split_no");	//분반	
 		String c_name = myResultSet.getString("c_name");  //과목명
 		int grade = myResultSet.getInt("c_grade");	 //학점
+		int time= myResultSet.getInt("t_time");	//교시
 %>
 <tr>
-  <td class="enroll_td" align="center"><%= c_no %></td> <td class="enroll_td" align="center"><%= split_no %></td> 
-  <td class="enroll_td" align="center"><%= c_name %></td><td class="enroll_td" align="center"><%= grade %></td>
+  <td class="enroll_td" align="center"><%= time %></td>
+  <td class="enroll_td" align="center"><%= c_no %></td>
+  <td class="enroll_td" align="center"><%= split_no %></td> 
+  <td class="enroll_td" align="center"><%= c_name %></td>
+  <td class="enroll_td" align="center"><%= grade %></td>
   <td class="enroll_td" align="center"><a id="subscribe" href="insert_verify.jsp?c_no=<%=c_no%>&split_no=<%=split_no%>">신청</a></td>
 </tr>
 <%
