@@ -118,6 +118,7 @@ if(year==0 && semester==0){
 %>
 <h4 id="select_title" align="center"><%=year %>년도 <%=semester %>학기 수강신청 조회</h4>
 
+<div class="bar">
 <form id="FRM" method="POST" action="select.jsp" width="75%" align="center">
 <select align="center" name="year" size="1">
 <%
@@ -147,6 +148,7 @@ if(semester==1){
 </select></span>
 <span align="right"><input type="submit" value="조회" onclick="local()"/></span>
 </form>
+</div>
 
 <table class="enroll_tb" width="75%" align="center" border>
 <tr><th class="enroll_th">교시</th><th class="enroll_th">과목번호</th><th class="enroll_th">과목명</th><th class="enroll_th">분반</th><th class="enroll_th">학점</th><th class="enroll_th">장소</th></tr>
@@ -203,7 +205,7 @@ while(RS.next()){
 
 
 %>
-<h6>총 <%=sum_course %> 과목, <%=sum_grade %> 학점을 신청하였습니다.</h6>
+<h6 class="select_result">총 <%=sum_course %> 과목, <%=sum_grade %> 학점을 신청하였습니다.</h6>
 <%
 try{
 	stmt.close();
