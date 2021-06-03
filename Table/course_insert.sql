@@ -21,6 +21,11 @@ INSERT INTO course VALUES ('A304', '화학으로본세상이야기(K-MOOC)', 3);
 
 INSERT INTO course VALUES ('A400', '독일어I', 3);
 INSERT INTO course VALUES ('A401', '사랑과헌법', 3);
+INSERT INTO course VALUES ('A402', '일본어I', 3);
+INSERT INTO course VALUES ('A403', '중국어I', 3);
+INSERT INTO course VALUES ('A405', '일본어II', 3);
+INSERT INTO course VALUES ('A406', '중국어II', 3);
+INSERT INTO course VALUES ('A408', '독일어II', 3);
 
 /*컴퓨터과학과*/
 INSERT INTO course VALUES ('C300', '데이터베이스프로그래밍', 3);
