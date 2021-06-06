@@ -3,4 +3,4 @@
 
 
 ## ERD
-![다운로드](https://user-images.githubusercontent.com/49220095/120357903-e4454400-c340-11eb-8b29-0effbdb29d8d.jpg)
+![erd_dbprogramming](https://user-images.githubusercontent.com/49220095/120913070-47cbca80-c6cf-11eb-854a-b2e6cf116f14.jpg)
