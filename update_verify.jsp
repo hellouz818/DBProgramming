@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.sql.*" %>
 <html>
-<head><title> ¼ö°­½ÅÃ» »ç¿ëÀÚ Á¤º¸ ¼öÁ¤ </title>
+<head><title> ìˆ˜ê°•ì‹ ì²­ ì‚¬ìš©ì ì •ë³´ ìˆ˜ì • </title>
 <% 
 request.setCharacterEncoding("utf-8");
 String dbdriver = "oracle.jdbc.driver.OracleDriver";
@@ -9,7 +9,7 @@ Class.forName(dbdriver);
 Connection myConn = null;
 
 String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-String user = "db1914062"; //°¢ÀÚ ¿À¶óÅ¬ °èÁ¤ ¾²½Ê½Ã¿À
+String user = "db1914062"; //ê°ì ì˜¤ë¼í´ ê³„ì • ì“°ì‹­ì‹œì˜¤
 String passwd = "oracle";
 
 PreparedStatement stmt = null;
@@ -33,7 +33,7 @@ System.out.println(VuserID+"    "+VuserPassword+"       "+VuserPasswordC);
 
 if(VuserPassword.equals(VuserPasswordC)==false){
 	%><script>
-	alert("ºñ¹Ğ¹øÈ£°¡ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù.");
+	alert("ë¹„ë°€ë²ˆí˜¸ê°€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	location.href="update.jsp";
 	</script><%
 }
@@ -51,7 +51,7 @@ else{
 		stmt.executeUpdate();
 		
 		%><script>
-		alert("ºñ¹Ğ¹øÈ£°¡ ¹Ù²î¾ú½À´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ë°”ë€Œì—ˆìŠµë‹ˆë‹¤.");
 		location.href="main.jsp";
 		</script><%
 		
@@ -59,9 +59,9 @@ else{
 
 } catch(SQLException ex) {
 	String sMessage;
-	if (ex.getErrorCode() == 20002) sMessage="¾ÏÈ£´Â 4ÀÚ¸® ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù";
-	else if (ex.getErrorCode() == 20003) sMessage="¾ÏÈ£¿¡ °ø¶õÀº ÀÔ·ÂµÇÁö ¾Ê½À´Ï´Ù.";
-	else sMessage="Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇÏ½Ê½Ã¿À";
+	if (ex.getErrorCode() == 20002) sMessage="ì•”í˜¸ëŠ” 4ìë¦¬ ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤";
+	else if (ex.getErrorCode() == 20003) sMessage="ì•”í˜¸ì— ê³µë€ì€ ì…ë ¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
+	else sMessage="ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì‹­ì‹œì˜¤";
 	out.println("<script>");
 	out.println("alert('"+sMessage+"');");
 	out.println("location.href='update.jsp';");
